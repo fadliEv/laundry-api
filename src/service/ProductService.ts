@@ -3,8 +3,19 @@ import { products } from "../repository/DataStore";
 import { v4 as uuidv4 } from "uuid";
 
 export class ProductService {
-    static getAll(): Product[] {
-        return products;
+    static getAll(page: number, limit: number) {
+        const offset = (page - 1) * limit;
+        const paginatedProducts = products.slice(offset, offset + limit);
+
+        return {
+            data: paginatedProducts,
+            pagination: {
+                currentPage: page,
+                pageSize: limit,
+                totalItems: products.length,
+                totalPages: Math.ceil(products.length / limit)
+            }
+        };
     }
 
     static getById(id: string): Product | undefined {

@@ -3,8 +3,13 @@ import { ProductService } from "../service/ProductService";
 
 export class ProductController {
     static getAll(req: Request, res: Response): void {
-        res.json(ProductService.getAll());
+        const page = parseInt(req.query.page as string) || 1;
+        const limit = parseInt(req.query.limit as string) || 10;
+
+        const result = ProductService.getAll(page, limit);
+        res.json(result);
     }
+
 
     static getById(req: Request, res: Response): void {
         const { id } = req.params;
@@ -42,4 +47,3 @@ export class ProductController {
         res.json({ message: "Product deleted successfully" });
     }
 }
-    
