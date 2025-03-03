@@ -2,6 +2,8 @@ import { Employee } from "../entity/Employee";
 import { Product } from "../entity/Product";
 import { User } from "../entity/User";
 import { Customer } from "../entity/Customer";
+import { Transaction } from "../entity/Transaction";
+import { TransactionDetail } from "../entity/TransactionDetail";
 import { BcryptUtil } from "../utils/BcryptUtil";
 import { v4 as uuidv4 } from "uuid";
 
@@ -65,5 +67,46 @@ export const customers: Customer[] = [
         phoneNumber: "08198765432",
         email: "andi@email.com",
         address: "Jl. Kenanga No. 7"
+    }
+];
+
+const customerIdSiti = customers[0]?.id;  
+const customerIdBudi = customers[1]?.id;  
+
+export const transactions: Transaction[] = [
+    {
+        id: uuidv4(),
+        customerId: customerIdSiti!,
+        isPickup: true,
+        pickupDate: "2025-03-05",
+        createdAt: new Date().toISOString().split('T')[0]
+    },
+    {
+        id: uuidv4(),
+        customerId: customerIdBudi!,
+        isPickup: false,
+        pickupDate: "2025-03-04",
+        createdAt: new Date().toISOString().split('T')[0]
+    }
+];
+
+export const transactionDetails: TransactionDetail[] = [
+    {
+        transactionId: transactions[0].id,
+        productId: products[0].id,
+        price: products[0].price,
+        qty: 2
+    },
+    {
+        transactionId: transactions[0].id,
+        productId: products[1].id,
+        price: products[1].price,
+        qty: 1
+    },
+    {
+        transactionId: transactions[1].id,
+        productId: products[2].id,
+        price: products[2].price,
+        qty: 3
     }
 ];
