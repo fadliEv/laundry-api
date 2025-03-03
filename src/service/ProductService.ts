@@ -24,7 +24,7 @@ export class ProductService {
 
     static create(data: Omit<Product, "id">): Product {
         const product: Product = {
-            id: uuidv4(), // <-- pakai UUID di sini
+            id: uuidv4(),
             ...data
         };
         products.push(product);

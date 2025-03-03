@@ -1,6 +1,7 @@
 import { Employee } from "../entity/Employee";
 import { Product } from "../entity/Product";
 import { User } from "../entity/User";
+import { Customer } from "../entity/Customer";
 import { BcryptUtil } from "../utils/BcryptUtil";
 import { v4 as uuidv4 } from "uuid";
 
@@ -40,5 +41,29 @@ export const products: Product[] = [
         name: "CJKT (Cuci Jaket Tebal)",
         price: 20000,
         description: "Layanan cuci jaket tebal dengan perawatan khusus"
+    }
+];
+
+export const customers: Customer[] = [
+    {
+        id: uuidv4(),
+        name: "Siti Aminah",
+        phoneNumber: "08123456789",
+        email: "siti@email.com",
+        address: "Jl. Melati No. 45"
+    },
+    {
+        id: uuidv4(),
+        name: "Budi Santoso",
+        phoneNumber: "08567891234",
+        email: "budi@email.com",
+        address: "Jl. Mawar No. 12"
+    },
+    {
+        id: uuidv4(),
+        name: "Andi Wijaya",
+        phoneNumber: "08198765432",
+        email: "andi@email.com",
+        address: "Jl. Kenanga No. 7"
     }
 ];
