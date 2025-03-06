@@ -7,17 +7,23 @@ import TransactionRoute from "./route/TransactionRoute";
 import cors from "cors";
 import { config } from "./config/env";
 
-const app = express();
-app.use(express.json());
 
-
-// Setup CORS pakai env
-app.use(cors({
-    origin: config.CORS_ORIGIN,
+const corsOptions = {
+    origin: (origin : any, callback : any) => {
+        if (!origin || config.CORS_ORIGINS.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
-}));
+};
 
+// Apply
+const app = express();
+app.use(express.json());
+app.use(cors(corsOptions));
 app.use("/auth", AuthRoute);
 app.use("/employees", EmployeeRoute);
 app.use("/products", ProductRoute);
