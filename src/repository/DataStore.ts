@@ -10,12 +10,13 @@ import { v4 as uuidv4 } from "uuid";
 
 export const employees: Employee[] = [];
 export const users: User[] = [
-    {
+    {   
+        id: uuidv4(),
         username: "admin",
-        password: BcryptUtil.hashPassword("admin123"),
+        password: BcryptUtil.hashPassword("123"),
         role: "admin",
         employeeId: null as any
-    }
+    },
 ];
 
 // Dummy Products
@@ -52,7 +53,8 @@ export const customers: Customer[] = [
         name: "Siti Aminah",
         phoneNumber: "08123456789",
         email: "siti@email.com",
-        address: "Jl. Melati No. 45"
+        address: "Jl. Melati No. 45",
+        user : users[0]
     },
     {
         id: uuidv4(),
